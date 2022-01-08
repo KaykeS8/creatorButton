@@ -28,7 +28,7 @@ label {
 .css {
     font-family: monospace;
     color: #333;
-    margin-top: 400px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
 }
