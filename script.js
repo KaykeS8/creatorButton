@@ -17,8 +17,22 @@ const handleStyle = {
     },
     color(value) {
         this.element.style.color = value
+    },
+    width(value) {
+        this.element.style.width = value + 'px'
+    },
+    border(value) {
+        this.element.style.border = value
+    },
+    borderRadius(value) {
+        this.element.style.borderRadius = value + 'px'
+    },
+    fontFamily(value) {
+        this.element.style.fontFamily = value
+    },
+    fontSize(value) {
+        this.element.style.fontSize = value + 'px'
     }
-
 }
 
 
@@ -28,6 +42,25 @@ function handleChange(event) {
     const value = event.target.value
 
     handleStyle[name](value)
-    console.log(name)
+
+    saveValues(name, value)
+    showcss()
 }
 
+function saveValues(name, value) {
+    localStorage[name] = value
+}
+
+function setValues() {
+    const properties = Object.keys(localStorage)
+    properties.forEach((propertie) => {
+        handleStyle[propertie](localStorage[propertie])
+        controles.elements[propertie].value = localStorage[propertie]
+    });
+  showcss()
+}
+setValues()
+
+function showcss() {
+    cssText.innerHTML = btn.style.cssText.split('; ').join(';<span></span>')
+}
